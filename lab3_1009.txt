@@ -1,0 +1,10 @@
+use DP basic by use the array seq to save the previous result
+The former: F[x] = (F[X-1]+F[X-2])(k-1), that i think the {F(N)} sequence is very similar to Fibonacci's one and can assume some facts.
+f(0) = 0 (total number of valid 0-digit numbers)
+f(1) = k - 1
+f(2) = (k - 1) * (k - 1)   (total number of valid 2-digit numbers)
+then,
+f(n) = (f(n-2) + f(n-1)) * (k - 1)
+
+Compute f(n) iteratively (DP), and then output f(n) at the end
+F(n) = f(n) + f(n-1)
