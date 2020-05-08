@@ -1,0 +1,7 @@
+Dynamic programming by save the matrix of time between 2 time salvos when add rocket. 
+use dp[500][500] as array when the 0-axis save the time beetween 2 salvos
+                                   1-axis is the 0,1,2,3,...n input of problem is the number of rocket
+easy see that: dp[0][:] = 1 //  don't need any thing
+               dp[1][:] = 1 // just need one time 
+               dp[i][k] = j from 1 to i sumof(dp[i - j][k - 1] * dp[j - 1][k - 1])/i;// we add 1 rocket from k-1 
+ - we need multiply 10 because time between 2 times is 10 
