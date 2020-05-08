@@ -1,0 +1,15 @@
+need to analys number: x = a1^2 + a2^2 + a3^2 + .....an^2 with the minimum number n
+use the dynamic programing with
+square[0] = 0 / 0
+square[1] = 1 / 1 of 1
+square[2] = 2 / 2 of 1
+square[3] = 3  / 3 of 1
+with number greater then 3: we try to find square[n] = square[n - a*2] + 1 that mean we try to add a^2 to the square of number n - a^2.
+example:
+      n = 12
+      try to: square[n - 1^2] 
+              square[n - 2^2]
+              square[n - 3^2]
+              square[n - 4^2]
+                        |--------- this is square when we minus one number have value(1,2,3,4)
+                        value is munimum 
