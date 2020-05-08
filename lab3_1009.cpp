@@ -1,22 +1,21 @@
 #include <bits/stdc++.h>
+int seq[17];
 long long calculate(const int n, const int k)
 {
-	int seq[16] = {0};
-	int add[16] = {0};
-	seq[0] = k - 1;
-	for (int i = 1; i < n; i++)
-	{
-		add[i] = seq[i-1];
-		seq[i] = (add[i-1] + seq[i-1]) * (k-1);
-	}
-	return seq[n-1] + add[n-1];
+    seq[0] = 0;
+    seq[1] = k - 1;
+    for (int i = 2; i <= n; i++)
+    {
+        seq[i] = (seq[i - 2] + seq[i - 1]) * (k - 1);
+    }
+    return seq[n] + seq[n - 1];
 }
+using namespace std;
 int main()
 {
-  FILE* open('input.txt', 'r', stdin);
-  FILE* open('output.txt','w',stdout);
-  int n = 0, k = 0;
-	cin>>n>>k;
-	cout<<calculate(n, k)<<endl;
-	return 0;
+    FILE *up = freopen("input.txt", "r", stdin);
+    int n, k;
+    cin >> n >> k;
+    cout << calculate(n, k) << endl;
+    return 0;
 }
