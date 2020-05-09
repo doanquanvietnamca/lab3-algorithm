@@ -1,0 +1,9 @@
+n - number card;
+v - number value of card is summary that we want;
+card[101] save the value of n cards (input); 
+flag[101] - only use if we have solution: save the value[0,1] 1 if posion is not valid to print
+state[v]  - save the posion that not valid. v is value of card.
+ |---------- v = card[x] + card[y] + card[z] <-- so we save state[v]=x ; state[x] = y ; state[y]=z. and got the right ans.
+dp[v] - is mainly magic: save the number of solution when we have v weights. 
+        if don't have solution. i save it with -1.
+        multisolution save it with 0.
