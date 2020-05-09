@@ -2,4 +2,7 @@ function check_monoton check if 3 number is monoton: so have if x>y>z or x<y<z, 
 function sgn get sign of number: sgn(X)= {-1,1} because sumof 2 number can over load in some test. then i get only multiply of 
                                                                                                   sign of number.
 state[100007] save the array without 2 consecutive equal values in the sequence: 8 8 9 -> 8 9 
-dp[i] save the monoton array from 0 to i. So just get dp[len(state)] is answer of algorithm.
+dp[i] save the number of monoton array from 0 to i. So just get dp[len(state)] is answer of algorithm.
+if check_monoton is true --> array monoton. so we don't need to add dp[i] and it just dp[i-1]
+but if it's false ---> we have new monoton array. need to dp[i]= dp[i-1]+1. and add i=i+2 because new array always have more 2 number.
+
