@@ -1,0 +1,11 @@
+vector node -> save the connect between 2 node. x->y, x-> : node[x] = vector<int>(y,z)
+vecotr weights -> save number apple between 2 node: weights[x]=vector<int>(number apple xy,xz)
+function add_node: add node and weights to vector.
+solutions:
+    array dp[u][c] save the maximum number apple of root node u after replace c branches.
+    u is root then have maximum 2 branches. use recursive to loop to all apple tree start with (u root)
+answer:
+    value dp[1][q] save the maximum number apple of root node 1 after replace q branches. Because 1 always the root of apple tree.
+    
+
+    
