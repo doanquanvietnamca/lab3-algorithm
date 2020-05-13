@@ -1,62 +1,84 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#define INF 0x3f3f3f3f
 using namespace std;
-const int maxn = 4e3+7;
+const int maxn = 4007;
 
-char s[maxn];
-bool is[maxn][maxn], vis[maxn];
-int len, dp[maxn], ans[maxn];
+char st[maxn];
+bool parolime[maxn][maxn], check[maxn];
+int len, dp[maxn], par[maxn];
+
+void parolime_func()
+{
+    int l, r;
+
+    for (int i = 1; i <= len; i++)
+    {
+        parolime[i][i] = true;
+        l = i - 1, r = i + 1;
+        while ((l >= 1) && (r <= len) && (st[l] == st[r]))
+        {
+            parolime[l][r] = true;
+            l--;
+            r++;
+        }
+        l = i;
+        r = i + 1;
+        while ((l >= 1) && (r <= len) && (st[l] == st[r]))
+        {
+            parolime[l][r] = true;
+            l--;
+            r++;
+        }
+    }
+}
+void dynmic_program()
+{
+    dp[0] = 0;
+    for (int i = 1; i <= len; i++)
+    {
+        for (int j = 1; j <= i; j++)
+        {
+            if (parolime[j][i] && (dp[i] > dp[j - 1] + 1))
+            {
+                par[i] = j - 1;
+                dp[i] = dp[par[i]] + 1;
+            }
+        }
+    }
+    printf("%d\n", dp[len]);
+}
+
+void config()
+{
+    memset(parolime, false, sizeof(parolime));
+    memset(check, false, sizeof(check));
+    memset(par, 0, sizeof(par));
+    memset(dp, INF, sizeof(dp));
+}
+void print()
+{
+    int vid = par[len];
+    while (vid)
+    {
+        check[vid] = true;
+        vid = par[vid];
+    }
+    for (int i = 1; i <= len; i++)
+    {
+        printf("%c", st[i]);
+        if (check[i])
+            printf(" ");
+    }
+    printf("\n");
+}
 int main()
 {
-    //freopen("in.txt", "r", stdin);
-    while(~scanf("%s", s+1))
-    {
-        memset(is, 0, sizeof(is));
-        memset(vis, 0, sizeof(vis));
-        getchar();
-        len = strlen(s+1);
-        for(int i = 1; i <= len; i++)
-        {
-            is[i][i] = true;
-            int l = i - 1, r = i + 1;
-            while(l>=1&&r<=len&&s[l] == s[r])
-            {
-                is[l][r] = true;
-                l--; r++;
-            }
-            l = i; r = i+1;
-            while(l>=1&&r<=len&&s[l] == s[r])
-            {
-                is[l][r] = true;
-                l--; r++;
-            }
-        }
-        memset(ans, 0, sizeof(ans));
-        memset(dp, INF, sizeof(dp));
-        dp[0] = 0;
-        for(int l = 1; l <= len; l++)
-        {
-            for(int i = 1; i <= l; i++)
-            {
-                if(is[i][l]&&dp[l] > dp[i - 1] + 1)
-                {
-                    dp[l] = dp[i - 1] + 1;
-                    ans[l] = i - 1;
-                }
-            }
-        }
-        printf("%d\n", dp[len]);
-        int pre = ans[len];
-        while(pre)
-        {
-            vis[pre] = true;
-            pre = ans[pre];
-        }
-        for(int i = 1; i <= len; i++)
-        {
-            printf("%c", s[i]);
-            if(vis[i]) printf(" ");
-        }
-        printf("\n");
-    }
+    freopen("input.txt", "r", stdin);
+    scanf("%s", st + 1);
+    config();
+    len = strlen(st + 1);
+    parolime_func();
+    dynmic_program();
+    print();
     return 0;
 }
