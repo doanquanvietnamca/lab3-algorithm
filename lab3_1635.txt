@@ -1,0 +1,24 @@
+use dynamic programming:
+st[i] ---- save the string input
+parolime[i][j] ----- save the flag of parolime substrings from i to j
+      parolime[i][j] = true -> parolime from i to j
+      parolime[i][j] = false -> not parolime 
+check[i] -> check if need to i is the split between 2 parolime
+dp[i] -> check the summary parolime from 0 to i postions of substrings
+par[i] -> number of posions that split parolme
+
+
+function parolime_func(): ---> parolime[i][j]
+        that return the state of substrings[i:j] have 2 type( length of substrings is odd, even numbers)
+           xxx|s|xxx --->  true
+           xxa|axx  ---> true
+funtion dynamic_program() -> dp[i]
+        that return the numbers parolime  of substrings from 0 to i.  dp is the minimum that posible.
+        we loop from 1 to i to choose max posible substring parolime that was save state in parolime.
+        dp[i] = dp[j-1]+1; with j is minimum. 
+ function print()    ---> substring spliited by space
+        what we save the array[par] is value that save the posion of split string. just loop to 0 we will have all posion splitted strings.
+        save it to check[i]. 
+        print the string and check[i] add space when need to split strings.
+        exp: zzzabzzz  +  check= [0,0,1,0,1,0, 0,0]    ----> zzz ab zzz
+        
